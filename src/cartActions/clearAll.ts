@@ -6,7 +6,7 @@ export default async function clearAll() {
   const res = await fetch(`https://ecommerce.routemisr.com/api/v1/cart`, {
     method: "DELETE",
     headers: {
-      Authorization: `Bearer ${String(token)}`,
+      token: String(token),
       "Content-Type": "application/json",
     },
   });

@@ -9,7 +9,7 @@ export default async function addToCart(id: string) {
   const res = await fetch(`https://ecommerce.routemisr.com/api/v1/cart`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${String(token)}`,
+      token: String(token),
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ productId: id }),

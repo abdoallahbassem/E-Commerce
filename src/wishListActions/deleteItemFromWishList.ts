@@ -6,7 +6,7 @@ export default async function  deleteItemFromWishList(id:string) {
     const res = await fetch(`https://ecommerce.routemisr.com/api/v1/wishlist/${id}`,{
       method:"DELETE",
       headers:{
-        Authorization: `Bearer ${String(token)}`,
+        token: String(token),
         "Content-Type": "application/json",
       }
     })

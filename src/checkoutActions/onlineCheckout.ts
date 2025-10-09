@@ -16,7 +16,7 @@ export default async function onlineCheckout(
     {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${String(token)}`,
+        token: String(token),
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ shippingAddres: values }),

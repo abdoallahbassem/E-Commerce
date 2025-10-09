@@ -1,4 +1,4 @@
-"use server"
+ "use server"
 import { decode } from "next-auth/jwt";
 import { cookies } from "next/headers";
 
@@ -12,4 +12,19 @@ try{
 catch(err){
     return err
 }
-}
+}  
+/* 
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/auth";
+
+export default async function getMyToken() {
+  try {
+    const session = await getServerSession(authOptions);
+    return session?.token || null;
+  } catch (err) {
+    console.error("Error getting token:", err);
+    return null;
+  }
+} */
+
+

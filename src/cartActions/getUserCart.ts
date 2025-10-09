@@ -6,7 +6,7 @@ export default async function getUserCart() {
   const res = await fetch(`https://ecommerce.routemisr.com/api/v1/cart`,{
     method:"GET",
     headers:{
-      Authorization: `Bearer ${String(token)}`,
+      token: String(token),
       "Content-Type": "application/json",
     }
   })
