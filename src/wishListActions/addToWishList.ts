@@ -12,7 +12,7 @@ export default async function addToWishList(id:string) {
     {
       method: "POST",
       headers: {
-        token,
+        Authorization: `Bearer ${String(token)}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ productId: id }),
