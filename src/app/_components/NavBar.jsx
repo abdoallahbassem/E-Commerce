@@ -3,21 +3,34 @@ import { CartContext } from "@/context/cartContext";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useContext, useState } from "react";
+import { usePathname } from "next/navigation"; 
 
 export default function NavBar() {
   const { numOfCart } = useContext(CartContext);
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname(); 
 
   function logOut() {
     signOut({ callbackUrl: "/login" });
   }
 
+  const navLinks = [
+    { href: "/", label: "home" },
+    { href: "/products", label: "products" },
+    { href: "/categories", label: "categories" },
+    { href: "/brands", label: "brands" },
+    { href: "/allorders", label: "all orders" },
+  ];
+
   return (
     <div className="py-6 bg-green-600">
       <div className="w-[90%] mx-auto flex flex-wrap px-3 justify-between items-center">
         <div className="flex items-center justify-between w-full lg:w-auto">
-          <Link href="/" className=" text-3xl font-bold text-white flex items-center gap-1">
+          <Link
+            href="/"
+            className=" text-3xl font-bold text-white flex items-center gap-1"
+          >
             <i className="fa-solid fa-cart-shopping"></i> fresh cart
           </Link>
           <button
@@ -34,10 +47,20 @@ export default function NavBar() {
           } w-full lg:flex lg:items-center lg:w-auto`}
         >
           <ul className="flex flex-col lg:flex-row gap-6 mt-4 lg:mt-0 items-center text-[20px] text-white">
-            <li>
-              <Link href="/">home</Link>
-            </li>
-            {session && (
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`${
+                    pathname === link.href
+                      ? "border-b-2 border-white font-bold" // 👈 هنا الاكتيف ستايل
+                      : "opacity-80 hover:opacity-100"
+                  } transition-all duration-300`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
               <li>
                 <Link href="/cart" className="relative">
                   <i className="fas fa-cart-shopping text-2xl"></i>
@@ -48,16 +71,8 @@ export default function NavBar() {
                   )}
                 </Link>
               </li>
-            )}
-            <li>
-              <Link href="/products">products</Link>
-            </li>
-            <li>
-              <Link href="/categories">categories</Link>
-            </li>
-            <li>
-              <Link href="/brands">brands</Link>
-            </li>
+            
+
             <li>
               <Link href="/wishList">
                 <span className="relative">
@@ -69,21 +84,28 @@ export default function NavBar() {
             </li>
 
             {session ? (
-              <li
-                onClick={logOut}
-                className="cursor-pointer text-xl"
-              >
+              <li onClick={logOut} className="cursor-pointer text-xl">
                 sign out <i className="fa-solid fa-right-to-bracket"></i>
               </li>
             ) : (
               <>
                 <li>
-                  <Link href="/register" className="text-2xl  ">
+                  <Link
+                    href="/register"
+                    className={`text-[20px] ${
+                      pathname === "/register" ? "border-b-2 border-white font-bold" : ""
+                    }`}
+                  >
                     register
                   </Link>
                 </li>
                 <li>
-                  <Link href="/login" className="text-2xl">
+                  <Link
+                    href="/login"
+                    className={`text-[20px] ${
+                      pathname === "/login" ? "border-b-2 border-white font-bold" : ""
+                    }`}
+                  >
                     login
                   </Link>
                 </li>

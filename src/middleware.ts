@@ -10,7 +10,8 @@ export async function middleware(request: NextRequest) {
     else return NextResponse.next();
   }
   else{
-    if(request.nextUrl.pathname==="/cart"){
+    if(request.nextUrl.pathname==="/cart" || request.nextUrl.pathname==="/allorders" || request.nextUrl.pathname==="/wishList"){
+
 
       return NextResponse.redirect(new URL('/login', request.url))
     }
@@ -19,5 +20,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/cart',"/login","/register"]
+  matcher: ['/cart',"/login","/register" , '/allorders' ,'/wishList']
 };

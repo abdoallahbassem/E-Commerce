@@ -16,12 +16,15 @@ export default function AddBtn({ id }: { id: string }) {
     let res = await addToCart(id);
     console.log(res);
     if (res.status === "success") {
-      toast.success("product added successfully");
+      toast.success("Item added to cart successfully ");
       setnumOfCart(numOfCart+1)
-      setdisabled(false)
+    } else if (res.status === "unauthorized") {
+      toast.error("Login first to add item to cart !");
     } else {
-      toast.error(res.message);
+      toast.error("Something went wrong!");
     }
+  
+    setdisabled(false);
   }
   return <Button disabled={disabled} className="cursor-pointer w-full disabled:bg-gray-500 " onClick={() => checkAddProduct(id)}>{disabled?<i className="fas  fa-spinner fa-spin"></i>:"add to cart"}</Button>;
 }

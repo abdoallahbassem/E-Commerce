@@ -71,7 +71,7 @@ export default function Regsiter() {
                 <FormItem>
                   <FormLabel />
                   <FormControl>
-                    <Input placeholder="password..." {...field} />
+                    <Input placeholder="password..." type='password' {...field} />
                   </FormControl>
                   <FormDescription />
                   <FormMessage />
@@ -79,7 +79,7 @@ export default function Regsiter() {
               )}
             />
 
-            <Button className="w-full my-3">login</Button>
+            <Button className="w-full my-3 cursor-pointer">login</Button>
           </form>
         </Form>
       </div>

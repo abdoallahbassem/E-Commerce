@@ -3,10 +3,12 @@ import getMyToken from "@/utilites/getMyToken";
 
 
 export default async function addToCart(id: string) {
+  const token = await getMyToken();
+  if (!token) {
+    return { status: "unauthorized" };
+  }
   try{
-    const token = await getMyToken();
-  if (!token) throw new Error("please login first to be able to add products to the cart ! ");
-  const res = await fetch(`https://ecommerce.routemisr.com/api/v1/cart`, {
+    const res = await fetch(`https://ecommerce.routemisr.com/api/v1/cart`, {
     method: "POST",
     headers: {
       token: String(token),
@@ -15,10 +17,12 @@ export default async function addToCart(id: string) {
     body: JSON.stringify({ productId: id }),
   });
   const payload = await res.json();
-  return payload;
-  }
-  catch(err){
-    console.log(err);
-    return err ;
+    return payload;
+  } catch (error) {
+    return { status: "error", message: "Something went wrong" };
   }
 }
+
+
+
+

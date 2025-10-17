@@ -5,10 +5,9 @@ import googlePlay from '../../../public/google-play.png';
 import appleStore from "../../../public/applestore.jpg";
 import Image from 'next/image';
 
-// stat s1--4 math s1-4 logic s17-20 web s3 4 data s3 s4
 export default function Footer() {
   return (
-    <div className='w-full bg-gray-200 p-12 '>
+    <div className='w-full bg-gray-200 p-12  '>
         <h1 className='font-bold text-2xl my-2'>
         Get The FreshCart App
         </h1>
