@@ -98,7 +98,7 @@ export default function Regsiter() {
                 <FormItem>
                   <FormLabel />
                   <FormControl>
-                    <Input placeholder="rePassword..." {...field} />
+                    <Input placeholder="rePassword..." type="password" {...field} />
                   </FormControl>
                   <FormDescription />
                   <FormMessage />

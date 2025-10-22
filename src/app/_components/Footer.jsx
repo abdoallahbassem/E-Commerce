@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <div className='w-full bg-gray-200 p-12  '>
+    <div className='w-full footer p-12  '>
         <h1 className='font-bold text-2xl my-2'>
         Get The FreshCart App
         </h1>
